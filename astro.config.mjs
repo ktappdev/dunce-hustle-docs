@@ -43,12 +43,6 @@ export default defineConfig({
 						{ label: 'Bot Behavior', slug: 'ai/bots' },
 					],
 				},
-				{
-					label: 'Reference',
-					items: [
-						{ label: 'Game Configuration & Tuning', slug: 'reference/game-configuration' },
-					],
-				},
 			],
 		}),
 	],

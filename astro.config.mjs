@@ -19,7 +19,7 @@ export default defineConfig({
 				{ tag: 'meta', attrs: { name: 'twitter:image', content: '/og-image.png' } },
 			],
 			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/ktappdev/dunce-hustle-kilo' },
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/ktappdev/dunce-hustle-docs' },
 			],
 			sidebar: [
 				{

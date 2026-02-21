@@ -1,0 +1,52 @@
+---
+title: Travel & Events
+description: Moving between locations and handling random encounters.
+---
+
+Traveling is essential to find the best prices, but it comes with costs and risks.
+
+## Travel Costs
+
+Traveling between locations requires **Cash** and **Energy**.
+- **Cash Cost:** Varies by distance (e.g., Stabroek to Ogle costs more than Stabroek to Bourda).
+- **Energy Cost:** Calculated as `Cost / 50`. You have a limited pool of energy per day.
+
+## Locations & Risk
+
+Each location has an inherent **Risk Level**, which determines the probability of a bad event occurring when you arrive.
+
+| Location | Risk Chance | Multiplier (Prices) |
+| :--- | :--- | :--- |
+| **Bel Air** | 5% (Safe) | 1.3x |
+| **Stabroek** | 10% | 1.0x |
+| **Bourda** | 10% | 1.1x |
+| **Eccles** | 10% | 0.85x |
+| **Ogle** | 15% | 1.2x |
+| **Agricola** | 20% | 0.9x |
+| **Albouystown** | 30% (Dangerous) | 0.8x |
+| **Charlestown** | 30% (Dangerous) | 0.75x |
+
+*Note: High-risk areas often have the lowest prices, offering a high-risk, high-reward trade-off.*
+
+## Random Events
+
+When traveling, you may encounter one of the following events:
+
+### 1. CANU Bust (Police Raid)
+The Customs Anti-Narcotic Unit raids your stash.
+- **Effect:** You lose **30%** of your inventory.
+- **Mitigation:** Your **Defense** stat (from Armor/Goons) can reduce this loss. Higher defense means fewer goods seized.
+
+### 2. Scrape Head (Robbery)
+A local "Scrape Head" attempts to rob you.
+- **Effect:** You lose **20%** of your cash.
+- **Mitigation:** If you have **Goons** in your loadout, they will "stomp out" the robber. You lose **1 Goon** but save your cash.
+
+### 3. Flood
+Specific to **Eccles** (or just heavy rain elsewhere).
+- **Effect (Eccles):** Flood damages your goods. You lose **10%** of inventory.
+- **Effect (Others):** Heavy rain. No penalty (just flavor text).
+
+### 4. Lucky Find
+A rare positive event.
+- **Effect:** You find a dropped package containing **5 units** of a random good.

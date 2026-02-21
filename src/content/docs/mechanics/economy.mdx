@@ -1,0 +1,70 @@
+---
+title: Economy & Trading
+description: How prices, buying, and selling work in Dunce Hustle.
+---
+
+The economy of Dunce Hustle is driven by location-based supply and demand, daily volatility, and strategic trading.
+
+## Goods
+
+There are 6 types of tradeable goods:
+
+- **Ganja**
+- **Coke**
+- **Molly**
+- **Crack**
+- **Acid**
+- **Shrooms**
+
+Each good has a **Base Price** and specific characteristics regarding where it is cheap or expensive.
+
+## Price Calculation
+
+Prices in a game are a snapshot of the global market, modified by local factors.
+
+### 1. Global Market Trends
+The **Base Price** of every good fluctuates in real-time (every 5 minutes) based on global market volatility. This means the underlying value of goods shifts constantly, affecting all new games and new days.
+
+### 2. Daily Local Prices
+When a new in-game **Day** starts, the game calculates specific prices for that day using the current Global Base Price. These prices remain fixed for the duration of that game day.
+
+The formula for the daily price at a specific location is:
+
+```
+Daily Price = Global Base Price * Location Multiplier * Day Volatility
+```
+
+### 3. Location Multiplier
+Each location has a general multiplier that affects *all* goods sold there:
+- **Bel Air:** 1.3x (High prices, good for selling)
+- **Ogle:** 1.2x
+- **Bourda:** 1.1x
+- **Stabroek:** 1.0x (Standard)
+- **Agricola:** 0.9x
+- **Eccles:** 0.85x
+- **Albouystown:** 0.8x (Low prices, good for buying)
+- **Charlestown:** 0.75x
+
+### 2. Supply & Demand (Cheap/Expensive Locations)
+Specific goods are cheaper or more expensive in certain areas:
+- **Cheap Locations (0.7x):** Buying here is a bargain.
+- **Expensive Locations (1.4x):** Selling here yields maximum profit.
+
+### 3. Volatility
+A random daily fluctuation is applied to keep the market dynamic.
+
+## Trading Mechanics
+
+### Buying
+- **Cost:** You pay the current price per unit.
+- **Limit:** You are limited by your **Cash** and **Inventory Space** (Max 1000 units).
+- **Inventory Value:** Buying goods converts your Cash into Inventory Value, maintaining your Net Worth (minus any spread).
+
+### Selling
+- **Gain:** You receive the current price per unit in Cash.
+- **Profit:** Profit is realized when you sell at a higher price than you bought (accounting for travel costs).
+
+### Strategy
+- **Buy Low:** Purchase goods in **Albouystown** or **Charlestown**, or where specific goods are "Cheap".
+- **Sell High:** Travel to **Bel Air** or **Ogle** to sell.
+- **Watch the Market:** Prices change daily. What was profitable yesterday might not be today.

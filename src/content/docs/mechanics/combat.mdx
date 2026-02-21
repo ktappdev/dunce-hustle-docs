@@ -7,39 +7,30 @@ In Dunce Hustle, you aren't just competing on the leaderboard—you can actively
 
 ## Mugging Mechanics
 
-You can attempt to mug another player if:
-1.  They are at the same **Location** as you.
-2.  You haven't mugged them yet **this game day**.
-3.  Their **Net Worth** is above 2000 (Newbie Protection).
-4.  You are not trying to mug yourself.
+Attacking other players is high-risk, high-reward. You can target the same player multiple times per day, but diminishing returns push you to find new targets.
 
-## The Combat Formula
+**Rules of engagement**
+1. Cost: **10 Energy** per attempt (failed attempts cost 15 Energy).
+2. Location: You must be at the **same Location** as your target.
+3. Protection: **Net Worth < $2,000** cannot be mugged (Newbie Protection).
 
-When you initiate a mugging, the game calculates a winner based on stats and a random roll:
+**Loot & diminishing returns**
 
-```
-Attack Score = Attacker Attack + Random(0-20)
-Defense Score = Target Defense + Random(0-20)
-```
+Each successful mugging against the same player on the same day yields less loot. Failed attempts do **not** advance the penalty.
 
-- If **Attack Score > Defense Score**, the Attacker wins.
-- Otherwise, the Defender successfully fights off the mugger.
+| Success # | Loot Penalty | Effective Loot |
+| --- | --- | --- |
+| 1st | None | 100% (10–25% of cash/goods) |
+| 2nd | -50% | 50% |
+| 3rd+ | -75% | 25% (floor) |
 
-## Rewards & Penalties
+**Outcomes**
 
-If the Attacker wins:
+- **Success:** Steal a portion of the target's **Cash** and **Inventory** per the table above; the target may also lose **1 Goon**.
+- **Failure:** Lose **15 Energy** (instead of 10) and have a **50%** chance to lose a **Goon**.
 
-### 1. Cash Stolen
-The attacker steals **10-25%** of the victim's cash.
+**Dev notes / edge cases**
 
-### 2. Goods Stolen
-The attacker steals **10-25%** of the victim's inventory.
-- *Constraint:* The attacker can only steal what fits in their own inventory.
-
-### 3. Goon Loss
-If the victim has any **Goons** in their loadout, they lose **1 Goon** (killed in the fight).
-
-## Strategy
-- **Check Leaderboard:** Find rich players to target.
-- **Timing:** Mug players after they've sold their goods (high cash) or before they sell (high inventory).
-- **Defense:** Invest in Armor and Goons to make yourself a hard target.
+- **Zeroing out:** Players cannot be taken below **$2,000 net worth**.
+- **Rounding:** If 25% of loot is less than 1 unit (e.g., $3 cash), it rounds down to **0**.
+- **Notification:** Victims see a notice with the applied penalty (e.g., “You were MUGGED… (50% less)”).

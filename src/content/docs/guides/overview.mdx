@@ -1,27 +1,87 @@
 ---
 title: Game Overview
-description: High-level overview of Dunce Hustle gameplay.
+description: Complete gameplay loop, match flow, and win conditions.
 ---
 
-**Dunce Hustle** is a strategic drug trafficking simulation game where players compete to build the highest net worth. You start as a small-time dealer and work your way up by buying low, selling high, and managing risks.
+**Dunce Hustle** is a competitive economic strategy game where you build the highest **Net Worth** before the game ends.
+
+You start small, trade across neighborhoods, survive raids and robberies, and pressure rivals through PvP.
+
+## Match Structure
+
+- **Starting resources:** GYD 10,000 cash, 24 energy, 1,000 inventory capacity
+- **Locations:** 8 neighborhoods with unique risk and price multipliers
+- **Goods:** 6 tradable products with different volatility and location patterns
+- **Modes:** Blitz, Standard, Relaxed, Marathon, and Long Form (persistent season)
+- **Typical match length:** 30 days (Long Form uses monthly season cadence)
 
 ## Core Gameplay Loop
 
-1.  **Start:** You begin with **GYD 10,000** and **24 Energy**.
-2.  **Buy:** Purchase goods (Ganja, Coke, etc.) at your current location.
-3.  **Travel:** Move to different neighborhoods to find better prices. Traveling costs **Cash** and **Energy**.
-4.  **Sell:** Offload your inventory at locations where demand (and prices) are high.
-5.  **Survive:** Avoid or defend against random events like police raids (CANU) and robberies (Scrape Heads).
-6.  **Upgrade:** Use your profits to buy better **Loadouts** (Weapons, Armor, Goons) to protect your assets.
-7.  **Compete:** Check the leaderboard and mug other players to steal their cash and product.
+1. **Scan local prices** for undervalued goods.
+2. **Buy inventory** within your cash and capacity limits.
+3. **Travel** to a better selling location (spending cash + energy).
+4. **Resolve events** triggered by travel risk (CANU, Scrape, Flood, Lucky Find).
+5. **Sell high**, convert inventory back to cash, and repeat.
+6. **Upgrade loadout** (weapon, armor, goons) for offense/defense.
+7. **Use Safehouse** to secure capital and reduce wipe risk.
+8. **Interact with players** via mugging and snitch pressure.
+9. **End of day** applies resets/interest/decay and rolls fresh prices.
 
-## Key Concepts
+## Core Stats
 
-- **Net Worth:** Your total score, calculated as `Cash + Inventory Value + Gear Value`.
-- **Energy:** Required for travel. Replenishes daily (in-game days).
-- **Locations:** Different neighborhoods have different prices and risk levels.
-- **Days:** The game progresses in days. Prices fluctuate daily.
+| Stat | What it does |
+| :--- | :--- |
+| **Cash** | Spendable liquid money for trading, travel, and upgrades. |
+| **Bank Balance** | Protected funds in Safehouse; included in net worth. |
+| **Loan Balance** | Debt that reduces net worth and accrues interest daily. |
+| **Inventory** | Goods you can sell later; max 1,000 units total. |
+| **Energy** | Required for travel and PvP actions; resets daily (with mode-specific behavior). |
+| **Attack** | Improves mugging success chance. Built from weapon + goons. |
+| **Defense** | Reduces losses and helps resist mugging. Built from armor + goons. |
+| **Risk Modifier** | Temporary extra danger from actions like snitch pressure or aggression. |
+| **Bounty** | Heat level that increases CANU bust chance and can force busts in risky zones. |
+| **Net Worth** | Primary scoreboard metric: cash + bank + inventory value + gear value - loans. |
 
-## Winning
+## Win and Loss Conditions
 
-The game ends after a set number of days (depending on the game mode). The player with the highest **Net Worth** at the end wins.
+### Win Condition
+
+At game end, the top-ranked human player by **Net Worth** wins.
+
+### End of Game
+
+A game finishes when its configured maximum day count is exceeded (usually day 30).
+
+### What “losing” means
+
+There is no hard bankruptcy knockout in normal play. You can recover from low cash by:
+
+- Trading smaller positions
+- Withdrawing bank funds (if available)
+- Taking controlled loans
+- Waiting for next-day reset and opportunities
+
+You can be temporarily removed from normal PvP pressure via hospitalization, but you are not permanently eliminated.
+
+## Day Cycle Essentials
+
+At day rollover:
+
+- Energy resets to max (with AFK penalties)
+- New location/day prices are generated
+- Bank balances gain daily interest
+- Loan balances gain daily interest
+- Bounty decays
+- Bots execute turns
+
+This means planning is both **intra-day** (execute trades now) and **inter-day** (position for tomorrow).
+
+## First-Run Priorities
+
+1. Learn one reliable buy-low/sell-high route.
+2. Avoid overexposure while undergeared.
+3. Bank meaningful profits instead of full-risk carrying.
+4. Upgrade defense early if you’re being targeted.
+5. Track energy so you can still travel out after trading.
+
+If you can consistently protect gains while compounding trade profit, you’ll climb fast.

@@ -1,52 +1,102 @@
 ---
 title: Travel & Events
-description: Moving between locations and handling random encounters.
+description: Travel cost, event probabilities, and risk mitigation.
 ---
 
-Traveling is essential to find the best prices, but it comes with costs and risks.
+Travel is how you realize arbitrage, but it’s also where most volatility and punishment happens.
 
 ## Travel Costs
 
-Traveling between locations requires **Cash** and **Energy**.
-- **Cash Cost:** Varies by distance (e.g., Stabroek to Ogle costs more than Stabroek to Bourda).
-- **Energy Cost:** Calculated as `Cost / 50`. You have a limited pool of energy per day.
+For every move:
 
-## Locations & Risk
+- **Cash cost:** based on route distance
+- **Energy cost:** `ceil(cashCost / 50)`
 
-Each location has an inherent **Risk Level**, which determines the probability of a bad event occurring when you arrive.
+Travel also reduces your risk modifier by 0.1 (down to a floor of 0), helping you cool down over time.
 
-| Location | Risk Chance | Multiplier (Prices) |
-| :--- | :--- | :--- |
-| **Bel Air** | 5% (Safe) | 1.3x |
-| **Stabroek** | 10% | 1.0x |
-| **Bourda** | 10% | 1.1x |
-| **Eccles** | 10% | 0.85x |
-| **Ogle** | 15% | 1.2x |
-| **Agricola** | 20% | 0.9x |
-| **Albouystown** | 30% (Dangerous) | 0.8x |
-| **Charlestown** | 30% (Dangerous) | 0.75x |
+## Base Location Risk
 
-*Note: High-risk areas often have the lowest prices, offering a high-risk, high-reward trade-off.*
+| Location | Base Risk |
+| :--- | ---: |
+| Bel Air | 5% |
+| Stabroek | 10% |
+| Bourda | 10% |
+| Eccles | 10% |
+| Ogle | 15% |
+| Agricola | 20% |
+| Albouystown | 30% |
+| Charlestown | 30% |
 
-## Random Events
+## Event Trigger Probability
 
-When traveling, you may encounter one of the following events:
+On travel, event trigger chance is:
 
-### 1. CANU Bust (Police Raid)
-The Customs Anti-Narcotic Unit raids your stash.
-- **Effect:** You lose **30%** of your inventory.
-- **Mitigation:** Your **Defense** stat (from Armor/Goons) can reduce this loss. Higher defense means fewer goods seized.
+```txt
+min(1, locationRisk + playerRiskModifier + weaponRisk)
+```
 
-### 2. Scrape Head (Robbery)
-A local "Scrape Head" attempts to rob you.
-- **Effect:** You lose **20%** of your cash.
-- **Mitigation:** If you have **Goons** in your loadout, they will "stomp out" the robber. You lose **1 Goon** but save your cash.
+Additional pressure can come from bounty heat.
 
-### 3. Flood
-Specific to **Eccles** (or just heavy rain elsewhere).
-- **Effect (Eccles):** Flood damages your goods. You lose **10%** of inventory.
-- **Effect (Others):** Heavy rain. No penalty (just flavor text).
+## Event Type Selection
 
-### 4. Lucky Find
-A rare positive event.
-- **Effect:** You find a dropped package containing **5 units** of a random good.
+If an event triggers:
+
+1. **CANU Bust check first**
+   - Base chance: 25%
+   - Bounty bonus:
+     - +20% at bounty >= 5,000
+     - +50% at bounty >= 15,000
+     - +100% at bounty >= 30,000
+2. If CANU not selected, event is random among:
+   - Scrape
+   - Flood
+   - Lucky Find
+
+### Forced Bust Condition
+
+At bounty >= 30,000 traveling into high-risk zones (risk >= 20%), CANU bust is forced.
+
+## Event Effects
+
+### 🚓 CANU Bust
+
+- Base loss: 30% of each inventory good
+- Defense mitigates losses up to 80% cap
+- Effective loss:
+
+```txt
+lossPct = 0.30 * (1 - min(0.8, defense / 100))
+```
+
+Insurance (if active) halves CANU inventory losses again.
+
+### 🔪 Scrape (Robbery)
+
+- Without goons: lose 20% of carry cash
+- With goons: cash loss prevented, but **1 goon is lost**
+
+### 🌊 Flood
+
+- In **Eccles**: lose 10% of goods
+- Other locations: flavor event only (no inventory loss)
+
+### 🍀 Lucky Find
+
+- Gain 5 units of a random good
+
+## Mitigation Strategies
+
+| Mitigation | Best Against |
+| :--- | :--- |
+| Higher defense gear | CANU bust inventory loss |
+| Keeping bounty low | Forced/boosted CANU odds |
+| Banking profits | Scrape cash loss exposure |
+| Route planning around Eccles | Flood inventory loss |
+| Maintaining goons | Scrape cash denial (at goon attrition cost) |
+
+## Practical Travel Discipline
+
+- Don’t travel full-inventory with no defense in high-risk neighborhoods.
+- Reduce heat (bounty/risk) before long reposition routes.
+- Keep emergency cash for one extra move if prices shift.
+- Use Safehouse before high-risk travel when protecting rank matters most.

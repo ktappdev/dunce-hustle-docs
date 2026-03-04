@@ -1,40 +1,94 @@
 ---
 title: Loadout & Stats
-description: Weapons, Armor, and Goons.
+description: Complete weapon, armor, and goon stats with build strategy.
 ---
 
-Your **Loadout** determines your effectiveness in combat and your resilience against random events.
+Your loadout is the backbone of both offense and survivability.
 
-## Gear Types
+## Stat Model
 
-### Weapons
-Weapons increase your **Attack** stat, making you more likely to succeed when mugging others.
-- *Examples:* Knife, Pistol, SMG.
-- *Stats:* Higher tier weapons provide more Attack but may come with higher **Risk** (visibility to police).
+- **Attack** = weapon attack + goons
+- **Defense** = armor defense + goons
+- **Risk** = weapon risk contribution
 
-### Armor
-Armor increases your **Defense** stat, helping you resist muggings and mitigate losses from police raids.
-- *Examples:* Vest, Heavy Armor.
-- *Stats:* Higher tier armor provides more Defense.
+Goons add **+1 attack and +1 defense each**.
 
-### Goons
-Hired muscle to protect your operation.
-- **Cost:** Ongoing salary (or upfront cost, depending on game version).
-- **Stats:**
-    - **+1 Attack** per Goon.
-    - **+1 Defense** per Goon.
-- **Special Ability:**
-    - **Anti-Robbery:** If you encounter a "Scrape Head" event, your Goons will stomp the robber. You lose **0 Cash**, but **1 Goon** is lost in the scuffle.
-    - **Meat Shield:** Goons can die during PvP combat if you lose.
+## Goons
 
-## Stat Effects
+- **Cost per goon:** GYD 1,000
+- **Max goons:** 20
 
-| Stat | Effect |
-| :--- | :--- |
-| **Attack** | Increases chance of winning a mugging attempt. |
-| **Defense** | Increases chance of repelling a mugging attempt. Reduces goods lost during a CANU Bust (Police Raid). |
-| **Risk** | Increases the likelihood of negative events when traveling (e.g., Police Raids). |
+### Goons in Events and PvP
 
-## Managing Loadout
+- **Scrape event:** if you have goons, robbery is prevented but **1 goon is lost**.
+- **Successful mug against you:** you lose 1 goon if you have any.
+- **Failed mug by you:** 50% chance to lose 1 goon if you have any.
 
-You can purchase gear at specific locations (usually the black market or gun store). Balance your spending between inventory (to make money) and loadout (to protect money).
+## Weapons
+
+| Weapon | Cost | Attack | Risk |
+| :--- | ---: | ---: | ---: |
+| Fists | 0 | 0 | 0.00 |
+| Brass Knuckles | 250 | 3 | 0.01 |
+| Pocket Knife | 500 | 5 | 0.02 |
+| Pipe Wrench | 750 | 7 | 0.03 |
+| Baseball Bat | 1,200 | 10 | 0.05 |
+| 9mm Pistol | 2,500 | 15 | 0.07 |
+| Glock 19 | 5,000 | 25 | 0.10 |
+| Pump Shotgun | 6,000 | 30 | 0.12 |
+| UZI | 9,000 | 38 | 0.18 |
+| AK-47 | 15,000 | 50 | 0.25 |
+| Dragon Breath | 25,000 | 65 | 0.35 |
+
+## Armor
+
+| Armor | Cost | Defense |
+| :--- | ---: | ---: |
+| T-Shirt | 0 | 1 |
+| Hoodie | 300 | 3 |
+| Leather Jacket | 800 | 5 |
+| Denim Jacket | 1,500 | 8 |
+| Stab Vest | 3,500 | 15 |
+| Tactical Vest | 7,000 | 25 |
+| Heavy Kevlar | 12,000 | 40 |
+| Military Plating | 20,000 | 55 |
+
+## Build Archetypes
+
+### Early Economy Build
+
+- Low-cost weapon + moderate armor + few goons
+- Goal: survive events while compounding trade cycles
+
+### Aggressive Hunter Build
+
+- Higher weapon attack + enough goons for consistency
+- Goal: farm profitable mug opportunities
+- Tradeoff: risk/heat rises, CANU pressure increases
+
+### Defensive Capital Build
+
+- Heavy armor + goon stack + controlled weapon risk
+- Goal: protect inventory/cash against raids and mugging
+
+## Upgrade Priority
+
+1. Get off zero weapon quickly (cheap attack gain).
+2. Add armor before over-investing in high-risk guns.
+3. Scale goons gradually to balance attack/defense.
+4. Upgrade weapon tiers when your route profit can absorb heat.
+
+## Common Mistakes
+
+- Overbuying high-risk weapons too early
+- Ignoring armor while carrying large inventories
+- Running high bounty + high weapon risk with no banking discipline
+- Treating goons as permanent (they are consumable over time)
+
+## Practical Rule
+
+Your best loadout is the one that protects your current strategy:
+
+- Trader-heavy sessions need survivability first.
+- PvP-heavy sessions need reliable attack and spare inventory space.
+- Leaderboard defense sessions need low volatility and strong protection.

@@ -1,36 +1,98 @@
 ---
 title: Combat & PvP
-description: How to mug other players and defend yourself in Dunce Hustle.
+description: Mugging rules, outcome formulas, loot scaling, and edge cases.
 ---
 
-In Dunce Hustle, you aren't just competing on the leaderboard—you can actively hinder your opponents by mugging them.
+PvP mugging is a direct way to steal value from rivals and disrupt their momentum.
 
-## Mugging Mechanics
+## Basic Requirements
 
-Attacking other players is high-risk, high-reward. You can target the same player multiple times per day, but diminishing returns push you to find new targets.
+To mug a target:
 
-**Rules of engagement**
-1. Cost: **10 Energy** per attempt (failed attempts cost 15 Energy).
-2. Location: You must be at the **same Location** as your target.
-3. Protection: **Net Worth < $2,000** cannot be mugged (Newbie Protection).
+- You must be in an active game and alive.
+- You need at least **10 energy**.
+- Target must be alive and not you.
+- Target must have at least **GYD 2,000 net worth** (newbie protection).
+- Target cannot be hospitalized.
+- Target must pass anti-grief gate:
 
-**Loot & diminishing returns**
+```txt
+targetNetWorth >= attackerNetWorth * 0.2
+```
 
-Each successful mugging against the same player on the same day yields less loot. Failed attempts do **not** advance the penalty.
+## Attack vs Defense Roll
 
-| Success # | Loot Penalty | Effective Loot |
-| --- | --- | --- |
-| 1st | None | 100% (10–25% of cash/goods) |
-| 2nd | -50% | 50% |
-| 3rd+ | -75% | 25% (floor) |
+Mugging uses stat + randomness:
 
-**Outcomes**
+```txt
+attackScore = attackerAttack + proximityBonus + random(0..20)
+defenseScore = defenderDefense + random(0..20)
+success if attackScore > defenseScore
+```
 
-- **Success:** Steal a portion of the target's **Cash** and **Inventory** per the table above; the target may also lose **1 Goon**.
-- **Failure:** Lose **15 Energy** (instead of 10) and have a **50%** chance to lose a **Goon**.
+- **Proximity bonus:** +10% of attacker attack if both are in same location
+- You can still mug non-co-located players; same location is a bonus, not a hard requirement
 
-**Dev notes / edge cases**
+## Energy Costs
 
-- **Zeroing out:** Players cannot be taken below **$2,000 net worth**.
-- **Rounding:** If 25% of loot is less than 1 unit (e.g., $3 cash), it rounds down to **0**.
-- **Notification:** Victims see a notice with the applied penalty (e.g., “You were MUGGED… (50% less)”).
+- **Success:** 10 energy
+- **Failure:** 15 energy
+
+## Loot Formula (Success)
+
+Cash and goods steal percentages are random in ranges:
+
+- Cash: 10%–25%
+- Goods: 10%–25%
+
+Then diminished by repeat success count against same target on same day.
+
+### Diminishing Returns
+
+Multiplier per repeat success vs same target/day:
+
+| Successful mugs on that target today | Multiplier |
+| :--- | ---: |
+| 1st | 1.00 |
+| 2nd | 0.50 |
+| 3rd+ | 0.25 (floor) |
+
+So effective steal ranges become smaller after repeated farming.
+
+## Loot Priority and Capacity Rules
+
+- Goods are stolen in descending base value order (high-value goods first).
+- Attacker cannot steal more goods than remaining inventory capacity allows.
+- Uncarryable loot stays with defender.
+
+## Goon Loss Rules
+
+- On successful mug **against** a target with goons: target loses 1 goon.
+- On failed mug, attacker with goons has 50% chance to lose 1 goon.
+
+## Secondary PvP Effects
+
+- Successful mug increases attacker bounty:
+  - Base +500
+  - +35% of cash stolen
+  - +75 per inventory unit stolen
+- Higher bounty increases future CANU bust pressure during travel.
+
+## Hospitalization Threshold
+
+If a player is successfully mugged **5+ times in one day**, they can be sent to hospital (if hospital system is enabled), gaining temporary safety but losing offensive tempo.
+
+## Important Edge Cases
+
+- You cannot mug protected low-net-worth players.
+- Repeated failed attempts do not increase diminishing-return count.
+- Insurance can reduce cash loss on mugged victims.
+- All mug outcomes generate events/notifications for both sides.
+
+## PvP Strategy
+
+- Hunt targets with high carry cash and premium goods.
+- Prefer same-location attacks for the 10% attack edge.
+- Rotate targets after first/second hit to avoid low-yield repeats.
+- Keep enough inventory space before attacking, or you waste steal potential.
+- Manage your own bounty so aggression doesn’t boomerang into CANU losses.

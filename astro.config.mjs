@@ -26,12 +26,14 @@ export default defineConfig({
 					label: 'Getting Started',
 					items: [
 						{ label: 'Overview', slug: 'guides/overview' },
+						{ label: 'FAQ', slug: 'faq' },
 					],
 				},
 				{
 					label: 'Game Mechanics',
 					items: [
 						{ label: 'Economy & Trading', slug: 'mechanics/economy' },
+						{ label: 'The Safehouse', slug: 'mechanics/safehouse' },
 						{ label: 'Travel & Events', slug: 'mechanics/travel-events' },
 						{ label: 'Combat & PvP', slug: 'mechanics/combat' },
 						{ label: 'Loadout & Stats', slug: 'mechanics/loadout' },
@@ -41,6 +43,20 @@ export default defineConfig({
 					label: 'AI & Bots',
 					items: [
 						{ label: 'Bot Behavior', slug: 'ai/bots' },
+					],
+				},
+				{
+					label: 'Reference',
+					items: [
+						{ label: 'Glossary', slug: 'reference/glossary' },
+						{ label: 'Game Constants', slug: 'reference/game-constants' },
+					],
+				},
+				{
+					label: 'Project',
+					items: [
+						{ label: 'Changelog', slug: 'changelog' },
+						{ label: 'Contributing', slug: 'contributing' },
 					],
 				},
 			],

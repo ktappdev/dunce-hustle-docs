@@ -1,0 +1,88 @@
+---
+title: The Safehouse
+description: Deposits, withdrawals, fees, limits, and risk trade-offs.
+---
+
+The Safehouse is your banking system. It protects wealth, adds daily interest, and supports controlled leverage through loans.
+
+## What the Safehouse Protects
+
+Money in bank balance is insulated from direct street losses like mugged carry cash.
+
+Use it to reduce exposure when you’re ahead.
+
+## Deposit Flow
+
+1. Choose amount to deposit.
+2. System applies fees.
+3. Remaining amount moves into bank balance.
+
+### Deposit Fees
+
+- **Base deposit fee:** 5% (always)
+- **Mobile banking fee:** 2% if you are **not** at Stabroek (bank branch)
+
+> Example: Deposit GYD 10,000 from non-bank location
+>
+> - Deposit fee (5%): 500
+> - Mobile fee (2%): 200
+> - Total cash spent: 10,200
+> - Bank credited: 9,500
+
+## Withdraw Flow
+
+1. Choose amount to withdraw.
+2. Check daily withdrawal window.
+3. Apply mobile fee if remote.
+4. Cash is added to hand; bank decreases.
+
+### Withdrawal Rules
+
+- **Daily withdrawal limit:** GYD 50,000 per rolling 24 hours
+- **Mobile banking fee:** 2% if not at Stabroek
+- Must have enough bank balance to cover `withdrawal + mobile fee`
+
+> Example: Withdraw GYD 20,000 remotely
+>
+> - Mobile fee: 400
+> - Bank debited: 20,400
+> - Cash received: 20,000
+
+## Interest and Loans
+
+At day rollover:
+
+- **Bank interest:** +3% daily on bank balance
+- **Loan interest:** +5% daily on outstanding loan
+
+Loan ceiling is tied to net worth:
+
+- **Max loan capacity:** 50% of your current net worth (minus current loan)
+
+## Safehouse Risk Comparison
+
+### Carrying cash
+
+- Pros: instant trading flexibility
+- Cons: exposed to robbery and tactical pressure
+
+### Banking cash
+
+- Pros: safer compounding, lower wipe risk, better for leaderboard defense
+- Cons: fees reduce short-cycle margins, withdrawal friction can slow pivots
+
+## Strategy Guidelines
+
+- Bank after high-value sales if you’re entering risky routes.
+- Avoid tiny frequent deposits; fee drag compounds quickly.
+- If planning aggressive multi-trade loops, keep an operating float in hand.
+- Withdraw at branch when possible to avoid repeated mobile fees.
+- Don’t over-leverage loans if your route confidence is low.
+
+## Best Practice Pattern
+
+- Keep **working capital** in cash.
+- Move **excess profit** into bank.
+- Use withdrawal limit awareness to avoid getting liquidity-locked.
+
+That balance gives you both survivability and execution speed.

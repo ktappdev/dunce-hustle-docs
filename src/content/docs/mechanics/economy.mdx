@@ -1,70 +1,94 @@
 ---
 title: Economy & Trading
-description: How prices, buying, and selling work in Dunce Hustle.
+description: Pricing formulas, multipliers, and practical profit math.
 ---
 
-The economy of Dunce Hustle is driven by location-based supply and demand, daily volatility, and strategic trading.
+Dunce Hustle uses a layered pricing model: good-specific traits, location economics, daily volatility, and intraday buy/sell pressure.
 
 ## Goods
 
-There are 6 types of tradeable goods:
+| Good | Base Price | Cheap Locations | Expensive Locations | Volatility |
+| :--- | ---: | :--- | :--- | ---: |
+| **Ganja** | 500 | Eccles, Agricola | Bel Air, Ogle | 0.25 |
+| **Coke** | 3,500 | Albouystown, Charlestown | Bel Air, Bourda | 0.40 |
+| **Molly** | 1,200 | Stabroek, Agricola | Bel Air, Ogle | 0.35 |
+| **Crack** | 800 | Albouystown, Charlestown | Bourda, Stabroek | 0.50 |
+| **Acid** | 2,000 | Eccles, Agricola | Bel Air, Ogle | 0.30 |
+| **Shrooms** | 900 | Eccles, Agricola | Bourda, Bel Air | 0.20 |
 
-- **Ganja**
-- **Coke**
-- **Molly**
-- **Crack**
-- **Acid**
-- **Shrooms**
+## Core Daily Price Formula
 
-Each good has a **Base Price** and specific characteristics regarding where it is cheap or expensive.
+Daily base prices for each location are initialized as:
 
-## Price Calculation
-
-Prices in a game are a snapshot of the global market, modified by local factors.
-
-### 1. Global Market Trends
-The **Base Price** of every good fluctuates in real-time (every 5 minutes) based on global market volatility. This means the underlying value of goods shifts constantly, affecting all new games and new days.
-
-### 2. Daily Local Prices
-When a new in-game **Day** starts, the game calculates specific prices for that day using the current Global Base Price. These prices remain fixed for the duration of that game day.
-
-The formula for the daily price at a specific location is:
-
-```
-Daily Price = Global Base Price * Location Multiplier * Day Volatility
+```txt
+priceMultiplier = (zoneBias ± volatilityRoll) * locationMultiplier
+price = round(good.basePrice * priceMultiplier)
 ```
 
-### 3. Location Multiplier
-Each location has a general multiplier that affects *all* goods sold there:
-- **Bel Air:** 1.3x (High prices, good for selling)
-- **Ogle:** 1.2x
-- **Bourda:** 1.1x
-- **Stabroek:** 1.0x (Standard)
-- **Agricola:** 0.9x
-- **Eccles:** 0.85x
-- **Albouystown:** 0.8x (Low prices, good for buying)
-- **Charlestown:** 0.75x
+Where:
 
-### 2. Supply & Demand (Cheap/Expensive Locations)
-Specific goods are cheaper or more expensive in certain areas:
-- **Cheap Locations (0.7x):** Buying here is a bargain.
-- **Expensive Locations (1.4x):** Selling here yields maximum profit.
+- `zoneBias` is:
+  - `0.7` in a good’s cheap location
+  - `1.4` in a good’s expensive location
+  - `1.0` otherwise
+- `volatilityRoll` is random in range `[-good.volatility, +good.volatility]`
+- `locationMultiplier` comes from neighborhood economics
 
-### 3. Volatility
-A random daily fluctuation is applied to keep the market dynamic.
+## Location Multipliers
 
-## Trading Mechanics
+| Location | Multiplier | Typical Use |
+| :--- | ---: | :--- |
+| **Bel Air** | 1.30 | Premium sell zone |
+| **Ogle** | 1.20 | Strong sell zone |
+| **Bourda** | 1.10 | Good sell zone |
+| **Stabroek** | 1.00 | Neutral |
+| **Agricola** | 0.90 | Value buying zone |
+| **Eccles** | 0.85 | Value buying zone |
+| **Albouystown** | 0.80 | Deep discount buying |
+| **Charlestown** | 0.75 | Deep discount buying |
 
-### Buying
-- **Cost:** You pay the current price per unit.
-- **Limit:** You are limited by your **Cash** and **Inventory Space** (Max 1000 units).
-- **Inventory Value:** Buying goods converts your Cash into Inventory Value, maintaining your Net Worth (minus any spread).
+## Intraday Price Movement
 
-### Selling
-- **Gain:** You receive the current price per unit in Cash.
-- **Profit:** Profit is realized when you sell at a higher price than you bought (accounting for travel costs).
+After day start, each trade nudges price:
 
-### Strategy
-- **Buy Low:** Purchase goods in **Albouystown** or **Charlestown**, or where specific goods are "Cheap".
-- **Sell High:** Travel to **Bel Air** or **Ogle** to sell.
-- **Watch the Market:** Prices change daily. What was profitable yesterday might not be today.
+- **Buy pressure:** `currentPrice * (1 + quantity * 0.005)`
+- **Sell pressure:** `currentPrice * (1 - quantity * 0.003)`
+
+Prices are clamped to:
+
+- **Minimum:** 50% of that row’s daily base price
+- **Maximum:** 300% of that row’s daily base price
+
+This creates temporary spikes and dips you can exploit.
+
+## Quick Profit Example
+
+Assume Coke base price 3,500.
+
+- In a cheap zone (0.7 bias) with low location multiplier and mild negative volatility, you might buy near **~2,100–2,400**.
+- In Bel Air/Bourda with favorable volatility and multiplier, sell could land around **~4,000+**.
+
+If you buy 100 units at 2,300 and sell at 4,100:
+
+```txt
+gross profit = (4,100 - 2,300) * 100 = 180,000
+```
+
+Then subtract travel costs, event losses, and banking fees to get net cycle profit.
+
+## Practical Trading Rules
+
+- **Best raw margins** usually come from cheap-zone to premium-zone routes.
+- **Liquidity matters:** big stacks can trap you if energy is low.
+- **Don’t ignore pressure:** your own large buys can make later fills worse.
+- **Inventory capacity is a bottleneck:** optimize value per slot.
+- **Daily reset changes everything:** yesterday’s route may be mediocre today.
+
+## Net Worth Interaction
+
+Trading shifts where value sits:
+
+- Buy converts cash into inventory value.
+- Sell converts inventory value back into cash.
+
+Your rank improves when you realize favorable spreads faster than rivals and protect gains from losses.

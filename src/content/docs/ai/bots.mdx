@@ -1,32 +1,76 @@
 ---
 title: Bot Behavior
-description: Understanding the AI competition.
+description: Bot types, difficulty settings, and counter-play.
 ---
 
-The game includes AI-controlled bots ("CPU Players") to keep the market active and provide competition. Understanding their logic can help you outsmart them.
+Bots keep markets active and create predictable-but-useful pressure patterns.
 
-## Bot Logic
+## Bot Types (Difficulty Profiles)
 
-Bots perform actions based on a set of rules:
+| Difficulty | Sell Threshold | Travel Interval | Snitch Chance/Turn | Buy Logic |
+| :--- | ---: | :--- | ---: | :--- |
+| **Easy** | > 1.20x base | Every 3 days | 20% | Buys cheapest goods |
+| **Medium** | > 1.10x base | Every 2–3 days | 15% | Buys best margin goods |
+| **Hard** | > 1.05x base | Every 1–2 days | 10% | Buys best margin goods |
 
-### 1. Selling
-Bots will sell their goods if the current price is significantly higher than the base price (typically **> 1.2x**). They don't hoard goods indefinitely.
+## Core Bot Turn Order
 
-### 2. Buying
-Bots look for the **2 cheapest goods** at their current location and buy as much as they can afford (up to a limit). This means they often snap up the best deals in low-price areas like **Albouystown**.
+Bots execute logic in a sequence:
 
-### 3. Travel
-Bots travel approximately every **3 days**. They move to random locations to spread out the market activity.
+1. **Sell phase**
+   - Day 29+: liquidate all inventory
+   - Otherwise sell goods above threshold
+2. **Travel phase**
+   - Travel on difficulty-dependent cadence
+   - Prefer less crowded bot destinations
+   - Medium/Hard also prefer better discounts
+3. **Buy phase**
+   - Easy: cheapest goods
+   - Medium/Hard: best undervaluation vs base price
+4. **Snitch phase**
+   - Only if enough energy reserve remains
 
-### 4. Snitching
-Bots can play dirty.
-- **Chance:** There is a **30% chance** a bot will "snitch" on you if you are in the same location.
-- **Effect:** Snitching increases your **Risk Modifier** by **+15%**.
-- **Result:** Your next travel is much more likely to result in a Police Raid or other negative event.
-- **Cost:** Snitching costs the bot **4 Energy**.
+## Shared Rules Bots Follow
 
-## Beating the Bots
+- Pay travel cash and energy like humans
+- Can trigger travel events (CANU, Scrape, Flood)
+- Respect inventory/cash constraints
+- Can’t snitch on bots (targets humans)
 
-- **Predict Movement:** Bots follow simple patterns. If a bot just bought up all the cheap goods in Albouystown, they will likely move to a high-price area (like Bel Air) soon to sell.
-- **Avoid Crowds:** Staying in the same location as multiple bots increases your chance of being snitched on.
-- **Mug Them:** Bots can be mugged just like human players. If you see a bot with a high net worth, they are likely carrying a lot of cash or valuable goods.
+## Snitch Behavior
+
+Bots can snitch on human players in the same location.
+
+Snitch outcomes:
+
+- Target risk modifier increases by +0.15 (capped)
+- Bot spends 4 energy
+- Target receives warning notification
+
+## Practical Counter-Strategies
+
+### 1) Exploit predictable liquidation
+
+Bots dump inventory late game (day 29+). Track likely cash-rich bots and plan PvP timing accordingly.
+
+### 2) Use crowd intelligence
+
+Bots spread to less bot-dense zones. Sudden bot concentration shifts can signal where value opportunities are forming.
+
+### 3) Avoid free snitch value
+
+If multiple bots share your location, travel out before ending your action cycle when possible.
+
+### 4) Front-run threshold selling
+
+Bots sell based on static threshold multipliers. If you see a price edge first, you can often exit before bot supply pressures price down.
+
+### 5) Pressure easy bots economically
+
+Easy bots over-prioritize cheapest goods; this can make their inventories predictable and potentially exploitable.
+
+## What Bots Are Good For
+
+- Keeping market liquidity active in low-player lobbies
+- Creating additional event and price movement noise
+- Supplying consistent learning targets for route and PvP practice

@@ -18,9 +18,6 @@ export default defineConfig({
 				{ tag: 'meta', attrs: { property: 'og:image', content: '/og-image.png' } },
 				{ tag: 'meta', attrs: { name: 'twitter:image', content: '/og-image.png' } },
 			],
-			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/ktappdev/dunce-hustle-docs' },
-			],
 			sidebar: [
 				{
 					label: 'Getting Started',
@@ -32,11 +29,16 @@ export default defineConfig({
 				{
 					label: 'Game Mechanics',
 					items: [
+						{ label: 'Game Modes & World', slug: 'mechanics/game-modes' },
 						{ label: 'Economy & Trading', slug: 'mechanics/economy' },
 						{ label: 'The Safehouse', slug: 'mechanics/safehouse' },
+						{ label: 'Insurance & Recovery', slug: 'mechanics/insurance-recovery' },
+						{ label: 'Bounty & Heat', slug: 'mechanics/bounty' },
 						{ label: 'Travel & Events', slug: 'mechanics/travel-events' },
 						{ label: 'Combat & PvP', slug: 'mechanics/combat' },
 						{ label: 'Loadout & Stats', slug: 'mechanics/loadout' },
+						{ label: 'Profile Progression', slug: 'mechanics/profile-progression' },
+						{ label: 'Awards', slug: 'mechanics/awards' },
 					],
 				},
 				{
@@ -53,10 +55,9 @@ export default defineConfig({
 					],
 				},
 				{
-					label: 'Project',
+					label: 'Updates',
 					items: [
 						{ label: 'Changelog', slug: 'changelog' },
-						{ label: 'Contributing', slug: 'contributing' },
 					],
 				},
 			],

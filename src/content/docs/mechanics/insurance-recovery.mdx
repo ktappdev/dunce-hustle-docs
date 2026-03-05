@@ -1,0 +1,58 @@
+---
+title: Insurance & Recovery
+description: Insurance packages, hospital rules, and early discharge behavior.
+---
+
+Insurance and recovery systems help you survive bad streaks and protect a winning run.
+
+## Insurance Packages
+
+Insurance is bought with cash:
+
+| Package | Price |
+| :--- | ---: |
+| **1 Day** | GYD 500 |
+| **3 Days** | GYD 1,350 |
+| **7 Days** | GYD 3,000 |
+
+If you already have active coverage, buying more extends from your current expiry instead of resetting from now.
+
+## What Insurance Protects
+
+### CANU busts
+
+Insurance halves CANU inventory losses:
+
+```txt
+insuredLoss = normalLoss * 0.5
+```
+
+### Mugging cash loss
+
+Insurance reduces mugged cash loss to **70% of the normal amount** and also tries to leave the victim with at least **GYD 1,000** cash on hand.
+
+It does **not** stop goods theft during a mug.
+
+## Hospitalization
+
+The mugging system supports hospitalization after repeated successful muggings:
+
+- **Threshold:** 5 successful mugs received in the same day
+- **Quick-match duration:** 1 day
+- **Long-form duration:** 12 hours
+- **Hospital destination:** Hospital
+
+While hospitalized, a player is protected from normal actions against them and blocked from normal actions themselves.
+
+## Important Note
+
+Depending on the current version or season settings, hospitalization may be turned off. If that happens, repeated muggings still hurt, but they will not send players into hospital protection.
+
+## Early Discharge
+
+If hospitalization is active and early discharge is available:
+
+- Minimum time before discharge: **3 hours**
+- Cost: **15% of current net worth**
+
+This is meant to create a real tradeoff between downtime and preserving leaderboard capital.

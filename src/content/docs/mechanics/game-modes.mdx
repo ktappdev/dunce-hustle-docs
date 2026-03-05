@@ -1,0 +1,73 @@
+---
+title: Game Modes & World
+description: Match lengths, lobby flow, and how Dunce World works.
+---
+
+Dunce Hustle currently has two ways to play: short-session matches and the persistent monthly world.
+
+## Quick Match Modes
+
+These modes are available from the lobby:
+
+| Mode | Day Length | Total Days | Typical Use |
+| :--- | ---: | ---: | :--- |
+| **Blitz** | 60s | 7 | Fast pressure, fast mistakes |
+| **Standard** | 120s | 7 | Default competitive pacing |
+| **Relaxed** | 180s | 7 | Learning and lower-pressure sessions |
+| **Marathon** | 300s | 7 | Slower planning-focused play |
+
+## Dunce World
+
+- **Display name:** Dunce World
+- **Invite code:** `WORLD`
+- **Day length:** 24 hours
+- **Season length:** current calendar month
+- **Max players:** effectively uncapped
+- **Starting cash:** GYD 5,000
+- **Starting energy:** 100
+- **Starting inventory capacity:** 100
+
+Dunce World is the long-running monthly season. It is built for slower growth, longer grudges, and more careful bankroll management than the 7-day modes.
+
+## Lobby Flow
+
+From lobby you can:
+
+- Create a quick game
+- Join with a 6-character invite code
+- Re-enter active games
+- Enter Dunce World directly
+
+Standard multiplayer lobbies support **2 to 8 players**.
+
+## Daily Flow
+
+At day advance, the active game:
+
+- Rolls the next day
+- Refreshes prices
+- Applies bank interest
+- Applies loan interest
+- Resets energy to max, minus AFK penalty when applicable
+- Decays bounty
+- Clears same-day action pressure like mug/snitch windows
+
+## AFK Rule
+
+If you take no actions during a day, the next day starts with an **AFK energy penalty of 4**.
+
+## Social Actions In Matches
+
+- **Snitch cost:** 4 energy
+- **Snitch rule:** same location only
+- **Snitch frequency:** once per target per day
+- **Snitch effect:** target gets `+0.15` risk modifier and `+1,500` bounty
+
+## World-Specific Market Behavior
+
+Dunce World keeps prices moving between day changes:
+
+- Hourly tick interval: **1 hour**
+- Hourly price swing band: **0.95x to 1.05x**
+
+That makes long-form routes less predictable than quick-match routes, especially if you sit on inventory for too long.

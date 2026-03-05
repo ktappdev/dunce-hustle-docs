@@ -20,17 +20,20 @@ description: Core numeric values used by live mechanics.
 ## Travel & Events
 
 - Travel energy: `ceil(travelCost / 50)`
+- Travel risk reduction after move: **0.1**
 - Base CANU share of triggered events: **25%** (before bounty bonuses)
 - CANU goods loss base: **30%**
 - CANU defense mitigation cap: **80%**
 - Scrape cash loss: **20%**
 - Flood goods loss (Eccles): **10%**
 - Lucky Find gain: **5 units**
+- Travel bounty decay: **2%**
 
 ## Combat (Mugging)
 
 - Attack energy cost: **10**
 - Failed attack cost: **15**
+- Plug Out initiation cost: **15**
 - Newbie protection threshold: **GYD 2,000 net worth**
 - Anti-grief minimum target: **20% of attacker net worth**
 - Loot ranges: **10%–25%** cash and goods
@@ -38,6 +41,19 @@ description: Core numeric values used by live mechanics.
 - Max goons: **20**
 - Failed-attack attacker goon loss chance: **50%**
 - Successful-defense target goon loss: **1 goon**
+- Attacker risk penalty on success: **+0.05**
+- Hospital mug threshold: **5**
+
+## Plug Out Combat
+
+- Base health: **100**
+- Max turns: **40**
+- Critical hit chance: **5%**
+- Critical damage multiplier: **2x**
+- Damage base: **10**
+- Damage per attack point: **0.5**
+- Reward multiplier: **1.5x**
+- Inactivity timeout: **5 minutes**
 
 ## Banking
 
@@ -52,7 +68,20 @@ description: Core numeric values used by live mechanics.
 
 - Snitch energy cost: **4**
 - Snitch risk penalty: **+0.15 risk modifier**
+- Snitch bounty gain: **+1,500**
 - Risk modifier cap: **0.5**
+
+## Match Structure
+
+- Quick-match days: **7**
+- Dunce World day length: **24 hours**
+- AFK energy penalty: **4**
+
+## Profile Progression
+
+- Starting Raw Gold: **5 dwt**
+- Reputation divisor: **50,000**
+- Level divisor: **100,000**
 
 ## Notes
 

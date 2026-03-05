@@ -1,0 +1,57 @@
+---
+title: Profile Progression
+description: Raw Gold, reputation, levels, and what your profile stats mean.
+---
+
+Your profile tracks long-term progress beyond a single run.
+
+## Raw Gold
+
+Every profile starts with **5 dwt** of Raw Gold.
+
+In the UI, Raw Gold is shown in a custom format:
+
+```txt
+ounces.remainder RG
+```
+
+There are **18 pennyweights per ounce**, so Raw Gold is mostly a profile-status stat right now rather than something you spend in the main game loop.
+
+## Reputation
+
+Reputation is based on your displayed net worth:
+
+```txt
+reputation = floor(displayedNetWorth / 50,000)
+```
+
+Displayed net worth uses the best of:
+
+- Your lifetime net worth
+- Your strongest active net worth
+
+## Level
+
+Your profile level scales from net worth too:
+
+```txt
+level = floor(displayedNetWorth / 100,000) + 1
+```
+
+That means players climb levels by building and keeping bigger fortunes over time.
+
+## Tracked Career Stats
+
+Your profile also keeps track of:
+
+- Total wins
+- Total games played
+- Total robberies
+- Total snitches
+- Lifetime net worth
+- Best win streak
+- Total awards
+
+## Why This Matters
+
+Profile progression rewards consistency, not just one lucky run. A player who keeps posting strong finishes and avoiding wipeouts will look stronger over time even if they are not always first place.

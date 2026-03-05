@@ -37,6 +37,7 @@ success if attackScore > defenseScore
 
 - **Success:** 10 energy
 - **Failure:** 15 energy
+- **Plug Out combat initiation:** 15 energy
 
 ## Loot Formula (Success)
 
@@ -76,11 +77,76 @@ So effective steal ranges become smaller after repeated farming.
   - Base +500
   - +35% of cash stolen
   - +75 per inventory unit stolen
+- Successful mug also adds `+0.05` risk modifier to the attacker, capped by the global risk ceiling
 - Higher bounty increases future CANU bust pressure during travel.
 
 ## Hospitalization Threshold
 
 If a player is successfully mugged **5+ times in one day**, they can be sent to hospital (if hospital system is enabled), gaining temporary safety but losing offensive tempo.
+
+## Plug Out Combat
+
+The codebase also has a separate turn-based combat mode used for deeper fights.
+
+- Base health: **100**
+- Max turns: **40**
+- Base damage: **10**
+- Damage per attack point: **0.5**
+- Critical chance: **5%**
+- Critical multiplier: **2x**
+- Reward multiplier on victory: **1.5x**
+
+### Body targeting
+
+| Target | Damage Multiplier | Base Hit Chance |
+| :--- | ---: | ---: |
+| **Head** | 2.0x | 30% |
+| **Torso** | 1.0x | 70% |
+| **Arms** | 0.5x | 60% |
+| **Legs** | 0.75x | 50% |
+
+### Damage shaping
+
+- Weapon amplification: **+1% damage per weapon attack point**
+- Armor softcap: **100**
+- Minimum damage floor: **5%**
+- Bonus health from defense: **0.2 HP per defense point**
+
+### How a Plug Out ends
+
+There are three main endings:
+
+#### 1. Win by knockout
+
+The winner takes scaled rewards from the loser:
+
+- Cash
+- Goods
+- Goons
+
+Reward rolls use normal loot ranges, then apply a **1.5x reward multiplier**.
+
+#### 2. Forfeit
+
+If you hit the forfeit button, the fight ends immediately and the other player wins by forfeit.
+
+Forfeit is effectively surrendering. You do not escape cleanly.
+
+#### 3. Draw
+
+Plug Out can also end with no winner:
+
+- Police interruption after the turn cap is reached
+- Inactivity timeout if the fight stalls too long
+
+When that happens, both sides keep their core inventory/cash position from the unresolved fight, though durability wear from the battle can still apply.
+
+### Inactivity rules
+
+- Full timeout: **5 minutes**
+- Warning threshold: **4 minutes**
+
+If nobody keeps the fight moving, the session is treated as abandoned by the system.
 
 ## Important Edge Cases
 
@@ -96,3 +162,4 @@ If a player is successfully mugged **5+ times in one day**, they can be sent to 
 - Rotate targets after first/second hit to avoid low-yield repeats.
 - Keep enough inventory space before attacking, or you waste steal potential.
 - Manage your own bounty so aggression doesn’t boomerang into CANU losses.
+- Plug Out rewards are larger than standard mugging, but they commit more energy and expose you to longer interaction windows.

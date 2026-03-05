@@ -1,10 +1,16 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
+
+// Set SITE_URL in your environment (recommended) or replace the fallback with your production docs URL.
+const SITE_URL = process.env.SITE_URL || 'https://your-domain.com';
 
 // https://astro.build/config
 export default defineConfig({
+	site: SITE_URL,
 	integrations: [
+		sitemap(),
 		starlight({
 			title: 'Dunce Hustle Docs',
 			logo: {
@@ -15,9 +21,14 @@ export default defineConfig({
 			favicon: '/favicon.ico',
 			head: [
 				{ tag: 'link', attrs: { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' } },
-				{ tag: 'meta', attrs: { property: 'og:image', content: '/og-image.png' } },
-				{ tag: 'meta', attrs: { name: 'twitter:image', content: '/og-image.png' } },
+				{ tag: 'meta', attrs: { property: 'og:site_name', content: 'Dunce Hustle Docs' } },
+				{ tag: 'meta', attrs: { property: 'og:image', content: `${SITE_URL}/og-image.png` } },
+				{ tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' } },
+				{ tag: 'meta', attrs: { name: 'twitter:image', content: `${SITE_URL}/og-image.png` } },
 			],
+			components: {
+				Head: './src/components/Head.astro',
+			},
 			sidebar: [
 				{
 					label: 'Getting Started',

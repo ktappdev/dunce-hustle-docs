@@ -1,0 +1,16 @@
+---
+const { head } = Astro.locals.starlightRoute;
+
+const site = Astro.site ?? Astro.url;
+const canonicalUrl = new URL(Astro.url.pathname, site).toString();
+
+const filteredHead = head.filter(({ tag, attrs }) => {
+	if (tag === 'link' && attrs?.rel === 'canonical') return false;
+	if (tag === 'meta' && attrs?.property === 'og:url') return false;
+	return true;
+});
+---
+
+{filteredHead.map(({ tag: Tag, attrs, content }) => <Tag {...attrs} set:html={content} />)}
+<link rel="canonical" href={canonicalUrl} />
+<meta property="og:url" content={canonicalUrl} />

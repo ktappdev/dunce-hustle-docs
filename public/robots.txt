@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Uses the configured Astro `site` URL as the base.
+Sitemap: /sitemap-index.xml
